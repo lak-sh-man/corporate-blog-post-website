@@ -1,4 +1,4 @@
-from flask import render_template,url_for,flash, redirect,request,Blueprint
+from flask import abort, render_template,url_for,flash, redirect,request,Blueprint
 from flask_login import current_user,login_required
 from company_blog import db
 from company_blog.models import BlogPost
