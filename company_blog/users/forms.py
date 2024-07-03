@@ -7,7 +7,7 @@ from flask_wtf.file import FileField, FileAllowed
 
 # User Based Imports
 from flask_login import current_user
-from puppycompanyblog.models import User
+from company_blog.models import User
 
 
 

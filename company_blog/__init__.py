@@ -49,10 +49,10 @@ login_manager.login_view = "users.login"
 
 # Import these at the top if you want
 # We've imported them here for easy reference
-from puppycompanyblog.core.views import core
-from puppycompanyblog.users.views import users
-from puppycompanyblog.blog_posts.views import blog_posts
-from puppycompanyblog.error_pages.handlers import error_pages
+from company_blog.core.views import core
+from company_blog.users.views import users
+from company_blog.blog_posts.views import blog_posts
+from company_blog.error_pages.handlers import error_pages
 
 # Register the apps
 app.register_blueprint(users)
