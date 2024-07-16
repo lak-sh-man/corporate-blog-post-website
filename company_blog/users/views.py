@@ -36,7 +36,7 @@ def login():
         # The verify_password method comes from the User object
         # https://stackoverflow.com/questions/2209755/python-operation-vs-is-not
 
-        if user.check_password(form.password.data) and user is not None:
+        if user is not None and user.check_password(form.password.data):
             #Log in the user
 
             login_user(user)
