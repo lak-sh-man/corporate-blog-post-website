@@ -1,1 +1,1 @@
-# Company-Blog-Post-Website
+# Company-Blog-Post-Website tailored for both Admin and User credentials
