@@ -8,7 +8,7 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('home.html')
 
 from user_site.user_home.views import user_core
 app.register_blueprint(user_core)
