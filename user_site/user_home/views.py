@@ -8,5 +8,5 @@ def home():
     This is the home page view. Notice how it uses pagination to show a limited
     number of posts by limiting its query size and then calling paginate.
     '''
-    return render_template('users_home.html')
+    return render_template('user_home.html')
 
