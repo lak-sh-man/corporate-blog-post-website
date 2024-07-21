@@ -8,10 +8,6 @@ def home():
 
 @app.route('/about')
 def about():
-    '''
-    Example view of any other "core" page. Such as a info page, about page,
-    contact page. Any page that doesn't really sync with one of the models.
-    '''
     return render_template('about.html')
 
 from user_site.user_home.views import user_core
