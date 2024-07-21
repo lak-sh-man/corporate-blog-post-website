@@ -11,7 +11,10 @@ def about():
     return render_template('about.html')
 
 from user_site.user_home.views import user_core
+from error_handlers import error_pages
+
 app.register_blueprint(user_core)
+app.register_blueprint(error_pages)
 
 if __name__ == '__main__':
     app.run(debug=True)
