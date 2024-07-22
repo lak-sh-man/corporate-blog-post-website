@@ -16,7 +16,6 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
-    ##########################################
     posts = db.relationship('UserBlogPost', backref='author', lazy=True)
 
     def __init__(self, email, username, password):
@@ -25,22 +24,21 @@ class User(db.Model, UserMixin):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self,password):
-        # https://stackoverflow.com/questions/23432478/flask-generate-password-hash-not-constant-output
         return check_password_hash(self.password_hash,password)
 
     def __repr__(self):
         return f"UserName: {self.username}"
 
+
+
 class UserBlogPost(db.Model):
 
     __tablename__ = 'blog_post'
 
-    users = db.relationship(User)
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     title = db.Column(db.String(140), nullable=False)
     text = db.Column(db.Text, nullable=False)
-    ##########################################
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __init__(self, title, text, user_id):
