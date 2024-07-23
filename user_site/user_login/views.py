@@ -7,10 +7,10 @@ from user_login.forms import User_RegistrationForm, User_LoginForm, User_UpdateF
 from user_login.picture_handler import add_profile_pic
 
 
-users = Blueprint('users', __name__)
+user_login_bp = Blueprint('userlogin_bp', __name__)
 
-@users.route('/register', methods=['GET', 'POST'])
-def register():
+@user_login_bp.route('/user_register', methods=['GET', 'POST'])
+def user_register():
     form = User_RegistrationForm()
 
     if form.validate_on_submit():
@@ -21,11 +21,11 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Thanks for registering! Now you can login!')
-        return redirect(url_for('users.login'))
-    return render_template('register.html', form=form)
+        return redirect(url_for('user_login_bp.user_login'))
+    return render_template('user_register.html', form=form)
 
-@users.route('/login', methods=['GET', 'POST'])
-def login():
+@user_login_bp.route('/user_login', methods=['GET', 'POST'])
+def user_login():
 
     form = User_LoginForm()
     if form.validate_on_submit():
@@ -49,23 +49,23 @@ def login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('core.index')
+                next = url_for('user_home_bp.user_home')
 
             return redirect(next)
-    return render_template('login.html', form=form)
+    return render_template('user_login.html', form=form)
 
 
 
 
-@users.route("/logout")
-def logout():
+@user_login_bp.route("/user_logout")
+def user_logout():
     logout_user()
-    return redirect(url_for('core.index'))
+    return redirect(url_for('user_home_bp.user_home'))
 
 
-@users.route("/account", methods=['GET', 'POST'])
+@user_login_bp.route("/user_account", methods=['GET', 'POST'])
 @login_required
-def account():
+def user_account():
 
     form = User_UpdateForm()
 
@@ -80,19 +80,19 @@ def account():
         current_user.email = form.email.data
         db.session.commit()
         flash('User Account Updated')
-        return redirect(url_for('users.account'))
+        return redirect(url_for('user_login_bp.user_account'))
 
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
 
     profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
-    return render_template('account.html', profile_image=profile_image, form=form)
+    return render_template('user_account.html', profile_image=profile_image, form=form)
 
 
-@users.route("/<username>")
-def user_posts(username):
+@user_login_bp.route("/<username>")
+def user_blogpost(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
     blog_posts = UserBlogPost.query.filter_by(author=user).order_by(UserBlogPost.date.desc()).paginate(page=page, per_page=5)
-    return render_template('user_blog_posts.html', blog_posts=blog_posts, user=user)
+    return render_template('user_blogpost.html', blog_posts=blog_posts, user=user)
