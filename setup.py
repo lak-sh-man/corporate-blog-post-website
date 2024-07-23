@@ -2,8 +2,9 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from app import app
+from flask import Flask
 
+app = Flask(__name__, template_folder='templates')
 #########################################################################################
 app.config['SECRET_KEY'] = 'mysecret'
 basedir = os.path.abspath(os.path.dirname(__file__))
