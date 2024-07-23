@@ -3,8 +3,8 @@ from flask_login import login_user, current_user, logout_user, login_required
 from setup import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from models import User, UserBlogPost
-from user_login.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
-from user_login.picture_handler import add_profile_pic
+from user_site.user_login.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
+from user_site.user_login.picture_handler import add_profile_pic
 
 
 user_login_bp = Blueprint('user_login_bp', __name__, template_folder = '../templates')
