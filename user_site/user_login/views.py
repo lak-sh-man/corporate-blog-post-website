@@ -3,7 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from setup import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from models import User, UserBlogPost
-from user_login.forms import RegistrationForm, LoginForm, UpdateUserForm
+from user_login.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
 from user_login.picture_handler import add_profile_pic
 
 
@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 
 @users.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegistrationForm()
+    form = User_RegistrationForm()
 
     if form.validate_on_submit():
         user = User(email=form.email.data,
@@ -27,7 +27,7 @@ def register():
 @users.route('/login', methods=['GET', 'POST'])
 def login():
 
-    form = LoginForm()
+    form = User_LoginForm()
     if form.validate_on_submit():
         # Grab the user from our User Models table
         user = User.query.filter_by(email=form.email.data).first()
@@ -67,7 +67,7 @@ def logout():
 @login_required
 def account():
 
-    form = UpdateUserForm()
+    form = User_UpdateForm()
 
     if form.validate_on_submit():
         print(form)

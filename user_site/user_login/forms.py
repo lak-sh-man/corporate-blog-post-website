@@ -10,13 +10,13 @@ from flask_login import current_user
 from models import User
 
 
-class LoginForm(FlaskForm):
+class User_LoginForm(FlaskForm):
     email = StringField('User Email', validators=[DataRequired(), Email()])
     password = PasswordField('User Password', validators=[DataRequired()])
     submit = SubmitField('User Login')
 
 
-class RegistrationForm(FlaskForm):
+class User_RegistrationForm(FlaskForm):
     email = StringField('User Email', validators=[DataRequired(),Email()])
     username = StringField('User Name', validators=[DataRequired()])
     password = PasswordField('User Password', validators=[DataRequired(), EqualTo('pass_confirm', message='Passwords Must Match!')])
@@ -34,7 +34,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Sorry, that username is taken!')
 
 
-class UpdateUserForm(FlaskForm):
+class User_UpdateForm(FlaskForm):
     email = StringField('User Email', validators=[DataRequired(),Email()])
     username = StringField('User Name', validators=[DataRequired()])
     picture = FileField('Update User Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
