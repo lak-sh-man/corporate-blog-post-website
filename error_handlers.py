@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-error_pages_bp = Blueprint('error_pages',__name__)
+error_pages_bp = Blueprint('error_pages_bp',__name__)
 
 @error_pages_bp.app_errorhandler(404)
 def error_404(error):
