@@ -7,7 +7,7 @@ from user_login.forms import User_RegistrationForm, User_LoginForm, User_UpdateF
 from user_login.picture_handler import add_profile_pic
 
 
-user_login_bp = Blueprint('userlogin_bp', __name__)
+user_login_bp = Blueprint('user_login_bp', __name__, template_folder = '../templates')
 
 @user_login_bp.route('/user_register', methods=['GET', 'POST'])
 def user_register():
