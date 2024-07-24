@@ -3,13 +3,13 @@ from flask_login import login_user, current_user, logout_user, login_required
 from setup import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from models import User, UserBlogPost
-from user_site.user_login.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
-from user_site.user_login.picture_handler import add_profile_pic
+from user_site.user_authentication.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
+from user_site.user_authentication.picture_handler import add_profile_pic
 
 
-user_login_bp = Blueprint('user_login_bp', __name__, template_folder = '../templates')
+user_authentication_bp = Blueprint('user_authentication_bp', __name__, template_folder = '../templates')
 
-@user_login_bp.route('/user_register', methods=['GET', 'POST'])
+@user_authentication_bp.route('/user_register', methods=['GET', 'POST'])
 def user_register():
     form = User_RegistrationForm()
 
@@ -24,7 +24,7 @@ def user_register():
         return redirect(url_for('user_login_bp.user_login'))
     return render_template('user_register.html', form=form)
 
-@user_login_bp.route('/user_login', methods=['GET', 'POST'])
+@user_authentication_bp.route('/user_login', methods=['GET', 'POST'])
 def user_login():
 
     form = User_LoginForm()
@@ -57,13 +57,13 @@ def user_login():
 
 
 
-@user_login_bp.route("/user_logout")
+@user_authentication_bp.route("/user_logout")
 def user_logout():
     logout_user()
     return redirect(url_for('user_home_bp.user_home'))
 
 
-@user_login_bp.route("/user_account", methods=['GET', 'POST'])
+@user_authentication_bp.route("/user_account", methods=['GET', 'POST'])
 @login_required
 def user_account():
 
@@ -90,7 +90,7 @@ def user_account():
     return render_template('user_account.html', profile_image=profile_image, form=form)
 
 
-@user_login_bp.route("/<username>")
+@user_authentication_bp.route("/<username>")
 def user_paginate(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()

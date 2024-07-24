@@ -9,12 +9,12 @@ def home():
 def about():
     return render_template('about.html')
 
-from user_site.user_blog_display.views import user_blog_display_bp
-from user_site.user_login.views import user_login_bp
+from user_site.user_blog_post.views import user_blog_post_bp
+from user_site.user_authentication.views import user_authentication_bp
 from error_handlers import error_pages_bp
 
-app.register_blueprint(user_blog_display_bp)
-app.register_blueprint(user_login_bp)
+app.register_blueprint(user_blog_post_bp)
+app.register_blueprint(user_authentication_bp)
 app.register_blueprint(error_pages_bp)
 
 if __name__ == '__main__':

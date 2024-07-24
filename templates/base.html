@@ -20,7 +20,7 @@
       </li>
       {% if current_user.is_authenticated %}
       <li class='nav-link'>
-        <a href="{{url_for('user_blog_display_bp.user_blog_display')}}">Post-List</a>
+        <a href="{{url_for('user_blog_post_bp.user_post_list')}}">Post-List</a>
       </li>
       <li class='nav-link'>
         <a href="{{url_for('user_login_bp.user_logout')}}">User-Logout</a>
