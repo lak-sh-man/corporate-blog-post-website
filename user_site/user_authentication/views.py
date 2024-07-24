@@ -21,7 +21,7 @@ def user_register():
         db.session.add(user)
         db.session.commit()
         flash('Thanks for registering! Now you can login!')
-        return redirect(url_for('user_login_bp.user_login'))
+        return redirect(url_for('user_authentication_bp.user_login'))
     return render_template('user_register.html', form=form)
 
 @user_authentication_bp.route('/user_login', methods=['GET', 'POST'])
@@ -49,7 +49,7 @@ def user_login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('user_home_bp.user_home')
+                next = url_for('user_blog_post_bp.user_post_list')
 
             return redirect(next)
     return render_template('user_login.html', form=form)
@@ -60,7 +60,7 @@ def user_login():
 @user_authentication_bp.route("/user_logout")
 def user_logout():
     logout_user()
-    return redirect(url_for('user_home_bp.user_home'))
+    return redirect(url_for('home'))
 
 
 @user_authentication_bp.route("/user_account", methods=['GET', 'POST'])
@@ -80,7 +80,7 @@ def user_account():
         current_user.email = form.email.data
         db.session.commit()
         flash('User Account Updated')
-        return redirect(url_for('user_login_bp.user_account'))
+        return redirect(url_for('user_authentication_bp.user_account'))
 
     elif request.method == 'GET':
         form.username.data = current_user.username
