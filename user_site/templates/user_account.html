@@ -9,20 +9,20 @@
   </div>
 </div>
 <div class="container">
-  <form  method="POST" action = "" enctype="multipart/form-data">
+  <form class="form-group" method="POST" action = "" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <div class="form-group">
-      {{ form.username.label(class="form-group") }}
-      {{form.username(class='form-control')  }}
+      {{ form.username.label(class="form-control-label") }}
+      {{form.username(class='form-control form-control-label')  }}
     </div>
     <div class="form-group">
-      {{ form.email.label(class="form-group") }}
-      {{form.email(class='form-control')  }}
+      {{ form.email.label(class="form-control-label") }}
+      {{form.email(class='form-control form-control-label')  }}
     </div> 
     <div class="form-group">
-      {{ form.picture.label(class="form-group") }}
+      {{ form.picture.label(class="form-control-label") }}
       {{ form.picture(class="form-control-file") }}
-    </div> <br>
+    </div> 
     <div class="form-group">
         {{ form.submit(class="btn btn-primary") }}
     </div>
