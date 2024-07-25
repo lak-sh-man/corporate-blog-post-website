@@ -70,7 +70,6 @@ def user_account():
     form = User_UpdateForm()
 
     if form.validate_on_submit():
-        print(form)
         if form.picture.data:
             username = current_user.username
             pic = add_profile_pic(form.picture.data,username)
