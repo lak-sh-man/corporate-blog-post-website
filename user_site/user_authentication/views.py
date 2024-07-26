@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from setup import db
 from werkzeug.security import generate_password_hash,check_password_hash
-from models import User, UserBlogPost
+from models import User
 from user_site.user_authentication.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
 from user_site.user_authentication.picture_handler import add_profile_pic
 
@@ -89,9 +89,4 @@ def user_account():
     return render_template('user_account.html', profile_image=profile_image, form=form)
 
 
-@user_authentication_bp.route("/<username>")
-def user_paginate(username):
-    page = request.args.get('page', 1, type=int)
-    user = User.query.filter_by(username=username).first_or_404()
-    blog_posts = UserBlogPost.query.filter_by(author=user).order_by(UserBlogPost.date.desc()).paginate(page=page, per_page=5)
-    return render_template('user_paginate.html', blog_posts=blog_posts, user=user)
+
