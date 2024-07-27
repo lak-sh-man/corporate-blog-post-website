@@ -19,42 +19,44 @@
         <a href="{{url_for('about')}}">About</a>
       </li>
       {% if current_user.is_authenticated %}
-      <li class='nav-link'>
-        <a href="{{url_for('user_blog_post_bp.user_post_list')}}">User-Post-List</a>
-      </li>
-      <li class='nav-link'>
-        <a href="{{url_for('user_blog_post_bp.user_create_post')}}">User-Create-Post</a>
-      </li>
-      <li class='nav-link'>
-        <a href="{{url_for('user_authentication_bp.user_account')}}">User-Account</a>
-      </li>
-      <li class='nav-link'>
-        <a href="{{url_for('user_authentication_bp.user_logout')}}">User-Logout</a>
-      </li>
-                              <!-- ################ -->
-      <li class='nav-link'>
-        <a href="#">Admin-Post-List</a>
-      </li>
-      <li class='nav-link'>
-        <a href="#">Admin-Create-Post</a>
-      </li>
-      <li class='nav-link'>
-        <a href="#">Admin-Account</a>
-      </li>
-      <li class='nav-link'>
-        <a href="#">Admin-Logout</a>
-      </li>
+            {% if current_user.id == 0 %}
+                  <li class='nav-link'>
+                    <a href="#">Admin-Post-List</a>
+                  </li>
+                  <li class='nav-link'>
+                    <a href="#">Admin-Create-Post</a>
+                  </li>
+                  <li class='nav-link'>
+                    <a href="#">Admin-Account</a>
+                  </li>
+                  <li class='nav-link'>
+                    <a href="#">Admin-Logout</a>
+                  </li>
+            {% else %}
+                  <li class='nav-link'>
+                    <a href="{{url_for('user_blog_post_bp.user_post_list')}}">User-Post-List</a>
+                  </li>
+                  <li class='nav-link'>
+                    <a href="{{url_for('user_blog_post_bp.user_create_post')}}">User-Create-Post</a>
+                  </li>
+                  <li class='nav-link'>
+                    <a href="{{url_for('user_authentication_bp.user_account')}}">User-Account</a>
+                  </li>
+                  <li class='nav-link'>
+                    <a href="{{url_for('user_authentication_bp.user_logout')}}">User-Logout</a>
+                  </li>
+            {% endif %}
+      
       {% else %}
-      <li class='nav-link'>
-        <a href="{{url_for('user_authentication_bp.user_login')}}">User-Login</a>
-      </li>
-      <li class='nav-link'>
-        <a href="{{url_for('user_authentication_bp.user_register')}}">User-Register</a>
-      </li>
-                              <!-- ################ -->
-      <li class='nav-link'>
-        <a href="#">Admin-Login</a>
-      </li>
+            <li class='nav-link'>
+              <a href="{{url_for('user_authentication_bp.user_login')}}">User-Login</a>
+            </li>
+            <li class='nav-link'>
+              <a href="{{url_for('user_authentication_bp.user_register')}}">User-Register</a>
+            </li>
+            <li class='nav-link'>
+              <a href="#">Admin-Login</a>
+            </li>
       {% endif %}
     </ul>
 <div class="container">
