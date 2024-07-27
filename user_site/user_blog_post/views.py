@@ -10,7 +10,7 @@ from flask_login import current_user, login_required
 user_blog_post_bp = Blueprint('user_blog_post_bp', __name__, template_folder = '../templates')
 
 
-@user_blog_post_bp.route('/user_create_post')
+@user_blog_post_bp.route('/user_create_post', methods=['GET','POST'])
 @login_required
 def user_create_post():
     form = User_BlogPostForm()
