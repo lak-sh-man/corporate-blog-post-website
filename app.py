@@ -18,4 +18,4 @@ app.register_blueprint(user_authentication_bp)
 app.register_blueprint(error_pages_bp)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) 
