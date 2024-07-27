@@ -23,9 +23,6 @@
         <a href="{{url_for('user_blog_post_bp.user_post_list')}}">User-Post-List</a>
       </li>
       <li class='nav-link'>
-        <a href="{{url_for('user_authentication_bp.user_logout')}}">User-Logout</a>
-      </li>
-      <li class='nav-link'>
         <a href="{{url_for('user_authentication_bp.user_account')}}">User-Account</a>
       </li>
       <li class='nav-link'>
@@ -37,6 +34,9 @@
       </li>
       <li class='nav-link'>
         <a href="{{url_for('user_authentication_bp.user_register')}}">User-Register</a>
+      </li>
+      <li class='nav-link'>
+        <a href="{{url_for('user_authentication_bp.user_logout')}}">User-Logout</a>
       </li>
       {% endif %}
     </ul>
