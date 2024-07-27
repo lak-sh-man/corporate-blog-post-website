@@ -28,15 +28,15 @@
       <li class='nav-link'>
         <a href="{{url_for('user_blog_post_bp.user_create_post')}}">User-Create-Post</a>
       </li>
+      <li class='nav-link'>
+        <a href="{{url_for('user_authentication_bp.user_logout')}}">User-Logout</a>
+      </li>
       {% else %}
       <li class='nav-link'>
         <a href="{{url_for('user_authentication_bp.user_login')}}">User-Login</a>
       </li>
       <li class='nav-link'>
         <a href="{{url_for('user_authentication_bp.user_register')}}">User-Register</a>
-      </li>
-      <li class='nav-link'>
-        <a href="{{url_for('user_authentication_bp.user_logout')}}">User-Logout</a>
       </li>
       {% endif %}
     </ul>
