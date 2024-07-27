@@ -41,7 +41,7 @@ def user_read_post(blog_post_id):
 @login_required
 def user_update_post(blog_post_id):
     blog_post = UserBlogPost.query.get_or_404(blog_post_id)
-    if blog_post.author != current_user:
+    if blog_post.user_author != current_user:
         # Forbidden, No Access
         abort(403)
 
@@ -64,7 +64,7 @@ def user_update_post(blog_post_id):
 @login_required
 def user_delete_post(blog_post_id):
     blog_post = UserBlogPost.query.get_or_404(blog_post_id)
-    if blog_post.author != current_user:
+    if blog_post.user_author != current_user:
         abort(403)
     db.session.delete(blog_post)
     db.session.commit()

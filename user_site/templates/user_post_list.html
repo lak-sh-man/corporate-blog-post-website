@@ -17,7 +17,7 @@
 
 
         <h2><a class="card-title" href="  {{ url_for('user_blog_post_bp.user_read_post', blog_post_id=post.id) }}">{{ post.title }}</a></h2>
-        <p>Written By: {{ post.author.username }}</p>
+        <p>Written By: {{ post.user_author.username }}</p>
         <p>Published on: {{ post.date.strftime('%Y-%m-%d') }}</p>
         <p class="card-text">{{ post.text[:100] }}...</p>
         <a href="{{ url_for('user_blog_post_bp.user_read_post', blog_post_id=post.id) }}" class="btn btn-primary">Read Blog Post</a>
