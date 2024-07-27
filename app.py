@@ -8,7 +8,7 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
+ 
 from user_site.user_blog_post.views import user_blog_post_bp
 from user_site.user_authentication.views import user_authentication_bp
 from admin_site.admin_blog_post.views import admin_blog_post_bp
