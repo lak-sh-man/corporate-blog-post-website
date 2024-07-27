@@ -16,22 +16,22 @@ class Admin_LoginForm(FlaskForm):
     submit = SubmitField('Admin Login')
 
 
-# class Admin_RegistrationForm(FlaskForm):
-#     email = StringField('Admin Email', validators=[DataRequired(),Email()])
-#     username = StringField('Admin Name', validators=[DataRequired()])
-#     password = PasswordField('Admin Password', validators=[DataRequired(), EqualTo('pass_confirm', message='Passwords Must Match!')])
-#     pass_confirm = PasswordField('Confirm Admin Password', validators=[DataRequired()])
-#     submit = SubmitField('Admin Register')
+class Admin_RegistrationForm(FlaskForm):
+    email = StringField('Admin Email', validators=[DataRequired(),Email()])
+    username = StringField('Admin Name', validators=[DataRequired()])
+    password = PasswordField('Admin Password', validators=[DataRequired(), EqualTo('pass_confirm', message='Passwords Must Match!')])
+    pass_confirm = PasswordField('Confirm Admin Password', validators=[DataRequired()])
+    submit = SubmitField('Admin Register')
 
-#     def validate_email(self, field):
-#         # Check if not None for that Admin email!
-#         if Admin.query.filter_by(email=field.data).first():
-#             raise ValidationError('Your email has been registered already!')
+    def validate_email(self, field):
+        # Check if not None for that Admin email!
+        if Admin.query.filter_by(email=field.data).first():
+            raise ValidationError('Your email has been registered already!')
 
-#     def validate_username(self, field):
-#         # Check if not None for that username!
-#         if Admin.query.filter_by(username=field.data).first():
-#             raise ValidationError('Sorry, that username is taken!')
+    def validate_username(self, field):
+        # Check if not None for that username!
+        if Admin.query.filter_by(username=field.data).first():
+            raise ValidationError('Sorry, that username is taken!')
 
 
 class Admin_UpdateForm(FlaskForm):
