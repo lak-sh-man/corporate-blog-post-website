@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     __tablename__ = 'user_table'
 
     id = db.Column(db.Integer, primary_key = True)
-    profile_image = db.Column(db.String(20), nullable=False, default='default_profile.png')
+    profile_image = db.Column(db.String(20), nullable=False, default='user_default_profile.jpg')
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
@@ -68,7 +68,7 @@ class Admin(db.Model, UserMixin):
     __tablename__ = 'admin_table'
 
     id = db.Column(db.Integer, primary_key = True)
-    profile_image = db.Column(db.String(20), nullable=False, default='default_profile.png')
+    profile_image = db.Column(db.String(20), nullable=False, default='admin_default_profile.jpg')
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))

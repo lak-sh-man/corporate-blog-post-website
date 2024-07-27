@@ -4,7 +4,7 @@ from setup import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from models import Admin
 from admin_site.admin_authentication.forms import Admin_RegistrationForm, Admin_LoginForm, Admin_UpdateForm
-from admin_site.admin_authentication.picture_handler import add_profile_pic
+from picture_handler import add_profile_pic
 
 
 admin_authentication_bp = Blueprint('admin_authentication_bp', __name__, template_folder = '../templates')

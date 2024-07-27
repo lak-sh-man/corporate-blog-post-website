@@ -4,7 +4,7 @@ from setup import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from models import User
 from user_site.user_authentication.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
-from user_site.user_authentication.picture_handler import add_profile_pic
+from picture_handler import add_profile_pic
 
 
 user_authentication_bp = Blueprint('user_authentication_bp', __name__, template_folder = '../templates')
