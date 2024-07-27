@@ -58,6 +58,7 @@ def admin_login():
 
 
 @admin_authentication_bp.route("/admin_logout")
+@login_required
 def admin_logout():
     logout_user()
     return redirect(url_for('home'))

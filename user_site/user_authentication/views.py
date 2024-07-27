@@ -58,6 +58,7 @@ def user_login():
 
 
 @user_authentication_bp.route("/user_logout")
+@login_required
 def user_logout():
     logout_user()
     return redirect(url_for('home'))
