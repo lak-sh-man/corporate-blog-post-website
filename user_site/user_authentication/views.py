@@ -48,7 +48,7 @@ def user_login():
 
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
-            if next == None or not next[0]=='/':
+            if next == None or not next[0]=='/' or next == '/admin_logout' or next == '/admin_account' or next == '/admin_create_post' or next == '/admin_read_post/<int:blog_post_id>' or next == '/admin_update_post/<int:blog_post_id>' or next == '/admin_delete_post/<int:blog_post_id>' or next == '/admin_post_list':
                 next = url_for('user_blog_post_bp.user_post_list')
 
             return redirect(next)
