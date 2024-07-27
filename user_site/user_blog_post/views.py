@@ -30,6 +30,7 @@ def user_create_post():
 # int: makes sure that the blog_post_id gets passed as in integer
 # instead of a string so we can look it up later.
 @user_blog_post_bp.route('/user_read_post/<int:blog_post_id>')
+@login_required
 def user_read_post(blog_post_id):
     # grab the requested blog post by id number or return 404
     blog_post = UserBlogPost.query.get_or_404(blog_post_id)
