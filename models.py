@@ -5,7 +5,18 @@ from flask_login import UserMixin
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    # Attempt to load User first
+    user = User.query.get(user_id)
+    if user:
+        return user
+    
+    # If User not found, attempt to load Admin
+    admin = Admin.query.get(user_id)
+    if admin:
+        return admin
+
+    # If neither is found, return None
+    return None
 
 class User(db.Model, UserMixin):
 

@@ -4,7 +4,6 @@ from setup import db
 from models import UserBlogPost
 from user_site.user_blog_post.forms import User_BlogPostForm
 from flask import render_template, request, Blueprint
-from models import UserBlogPost
 from flask_login import current_user, login_required
 
 user_blog_post_bp = Blueprint('user_blog_post_bp', __name__, template_folder = '../templates')

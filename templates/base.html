@@ -21,16 +21,16 @@
       {% if current_user.is_authenticated %}
             {% if current_user.id == 0 %}
                   <li class='nav-link'>
-                    <a href="#">Admin-Post-List</a>
+                    <a href="{{url_for('admin_blog_post_bp.admin_post_list')}}">Admin-Post-List</a>
                   </li>
                   <li class='nav-link'>
-                    <a href="#">Admin-Create-Post</a>
+                    <a href="{{url_for('admin_blog_post_bp.admin_create_post')}}">Admin-Create-Post</a>
                   </li>
                   <li class='nav-link'>
-                    <a href="#">Admin-Account</a>
+                    <a href="{{url_for('admin_authentication_bp.admin_account')}}">Admin-Account</a>
                   </li>
                   <li class='nav-link'>
-                    <a href="#">Admin-Logout</a>
+                    <a href="{{url_for('admin_authentication_bp.admin_logout')}}">Admin-Logout</a>
                   </li>
             {% else %}
                   <li class='nav-link'>
@@ -55,8 +55,11 @@
               <a href="{{url_for('user_authentication_bp.user_register')}}">User-Register</a>
             </li>
             <li class='nav-link'>
-              <a href="#">Admin-Login</a>
+              <a href="{{url_for('admin_authentication_bp.admin_login')}}">Admin-Login</a>
             </li>
+            <!-- <li class='nav-link'>
+              <a href="{{url_for('admin_authentication_bp.admin_register')}}">Admin-Register</a>
+            </li> -->
       {% endif %}
     </ul>
 <div class="container">
