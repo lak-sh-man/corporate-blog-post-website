@@ -3,7 +3,7 @@ from flask_login import current_user,login_required
 from setup import db
 from admin_site.admin_blog_post.forms import Admin_BlogPostForm
 from flask import render_template, request, Blueprint
-from models import AdminBlogPost
+from models import AdminBlogPost, User
 from flask_login import current_user, login_required
 
 admin_blog_post_bp = Blueprint('admin_blog_post_bp', __name__, template_folder = '../templates')
@@ -83,3 +83,9 @@ def admin_post_list():
     # blog_posts = BlogPost.query.order_by(BlogPost.date.desc()).paginate(page=page, per_page=10)
     blog_posts = AdminBlogPost.query.filter_by(user_id=current_user.id).order_by(AdminBlogPost.date.desc()).paginate(page=page, per_page=10)
     return render_template('admin_post_list.html', blog_posts=blog_posts)
+
+@admin_blog_post_bp.route('/admin_user_list')
+@login_required
+def admin_user_list():
+    clients = User.query.all()
+    return render_template('admin_user_list.html', clients=clients)
