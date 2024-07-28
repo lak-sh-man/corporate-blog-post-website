@@ -98,12 +98,16 @@ def admin_deletes_user():
     form = Admin_UserDeleteForm()
     if form.validate_on_submit():
         id = form.id.data
-        cli = User.query.get(id)
-        cli_posts = UserBlogPost.query.filter_by(user_id=id).all()
-        db.session.delete(cli)
-        for post in cli_posts:
-            db.session.delete(post)
-        db.session.commit()
+        x = User.query.filter_by(id=id).all()
+        if not x :
+            return render_template('admin_deletes_user.html',form=form)
+        else:
+            cli = User.query.get(id)
+            cli_posts = UserBlogPost.query.filter_by(user_id=id).all()
+            db.session.delete(cli)
+            for post in cli_posts:
+                db.session.delete(post)
+            db.session.commit()
 
         return redirect(url_for('admin_blog_post_bp.admin_user_list'))
     return render_template('admin_deletes_user.html',form=form)
