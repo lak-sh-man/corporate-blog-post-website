@@ -1,9 +1,9 @@
 from flask import abort, render_template,url_for,flash, redirect,request,Blueprint
 from flask_login import current_user,login_required
 from setup import db
-from admin_site.admin_blog_post.forms import Admin_BlogPostForm
+from admin_site.admin_blog_post.forms import Admin_BlogPostForm, Admin_UserDeleteForm
 from flask import render_template, request, Blueprint
-from models import AdminBlogPost, User
+from models import AdminBlogPost, User, UserBlogPost
 from flask_login import current_user, login_required
 
 admin_blog_post_bp = Blueprint('admin_blog_post_bp', __name__, template_folder = '../templates')
@@ -89,3 +89,21 @@ def admin_post_list():
 def admin_user_list():
     clients = User.query.all()
     return render_template('admin_user_list.html', clients=clients)
+
+
+@admin_blog_post_bp.route('/admin_deletes_user', methods=['GET', 'POST'])
+@login_required
+def admin_deletes_user():
+
+    form = Admin_UserDeleteForm()
+    if form.validate_on_submit():
+        id = form.id.data
+        cli = User.query.get(id)
+        cli_posts = UserBlogPost.query.filter_by(user_id=id).all()
+        db.session.delete(cli)
+        for post in cli_posts:
+            db.session.delete(post)
+        db.session.commit()
+
+        return redirect(url_for('admin_blog_post_bp.admin_user_list'))
+    return render_template('admin_deletes_user.html',form=form)
