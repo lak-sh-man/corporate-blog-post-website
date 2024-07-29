@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from models import User
 from user_site.user_authentication.forms import User_RegistrationForm, User_LoginForm, User_UpdateForm
 from picture_handler import add_profile_pic
+from reauthentication import reauth_required
 
 
 user_authentication_bp = Blueprint('user_authentication_bp', __name__, template_folder = '../templates')
@@ -60,6 +61,7 @@ def user_login():
 
 @user_authentication_bp.route("/user_logout")
 @login_required
+@reauth_required('admin')
 def user_logout():
     logout_user()
     return redirect(url_for('home'))
@@ -67,6 +69,7 @@ def user_logout():
 
 @user_authentication_bp.route("/user_account", methods=['GET', 'POST'])
 @login_required
+@reauth_required('admin')
 def user_account():
 
     form = User_UpdateForm()

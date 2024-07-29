@@ -5,12 +5,14 @@ from admin_site.admin_blog_post.forms import Admin_BlogPostForm, Admin_UserDelet
 from flask import render_template, request, Blueprint
 from models import AdminBlogPost, User, UserBlogPost
 from flask_login import current_user, login_required
+from reauthentication import reauth_required
 
 admin_blog_post_bp = Blueprint('admin_blog_post_bp', __name__, template_folder = '../templates')
 
 
 @admin_blog_post_bp.route('/admin_create_post', methods=['GET','POST'])
 @login_required
+@reauth_required('user')
 def admin_create_post():
     form = Admin_BlogPostForm()
 
@@ -31,6 +33,7 @@ def admin_create_post():
 # instead of a string so we can look it up later.
 @admin_blog_post_bp.route('/admin_read_post/<int:blog_post_id>')
 @login_required
+@reauth_required('user')
 def admin_read_post(blog_post_id):
     # grab the requested blog post by id number or return 404
     blog_post = AdminBlogPost.query.get_or_404(blog_post_id)
@@ -39,6 +42,7 @@ def admin_read_post(blog_post_id):
 
 @admin_blog_post_bp.route("/admin_update_post/<int:blog_post_id>", methods=['GET', 'POST'])
 @login_required
+@reauth_required('user')
 def admin_update_post(blog_post_id):
     blog_post = AdminBlogPost.query.get_or_404(blog_post_id)
     if blog_post.admin_author != current_user:
@@ -62,6 +66,7 @@ def admin_update_post(blog_post_id):
 
 @admin_blog_post_bp.route("/admin_delete_post/<int:blog_post_id>", methods=['POST'])
 @login_required
+@reauth_required('user')
 def admin_delete_post(blog_post_id):
     blog_post = AdminBlogPost.query.get_or_404(blog_post_id)
     if blog_post.admin_author != current_user:
@@ -74,6 +79,7 @@ def admin_delete_post(blog_post_id):
 
 @admin_blog_post_bp.route('/admin_post_list')
 @login_required
+@reauth_required('user')
 def admin_post_list():
     '''
     This is the home page view. Notice how it uses pagination to show a limited
@@ -86,6 +92,7 @@ def admin_post_list():
 
 @admin_blog_post_bp.route('/admin_user_list')
 @login_required
+@reauth_required('user')
 def admin_user_list():
     clients = User.query.all()
     return render_template('admin_user_list.html', clients=clients)
@@ -93,6 +100,7 @@ def admin_user_list():
 
 @admin_blog_post_bp.route('/admin_deletes_user', methods=['GET', 'POST'])
 @login_required
+@reauth_required('user')
 def admin_deletes_user():
 
     form = Admin_UserDeleteForm()

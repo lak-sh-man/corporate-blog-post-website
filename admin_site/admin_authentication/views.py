@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from models import Admin
 from admin_site.admin_authentication.forms import Admin_RegistrationForm, Admin_LoginForm, Admin_UpdateForm
 from picture_handler import add_profile_pic
+from reauthentication import reauth_required
 
 
 admin_authentication_bp = Blueprint('admin_authentication_bp', __name__, template_folder = '../templates')
@@ -59,6 +60,7 @@ def admin_login():
 
 @admin_authentication_bp.route("/admin_logout")
 @login_required
+@reauth_required('user')
 def admin_logout():
     logout_user()
     return redirect(url_for('home'))
@@ -66,6 +68,7 @@ def admin_logout():
 
 @admin_authentication_bp.route("/admin_account", methods=['GET', 'POST'])
 @login_required
+@reauth_required('user')
 def admin_account():
 
     form = Admin_UpdateForm()

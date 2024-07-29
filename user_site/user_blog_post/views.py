@@ -5,12 +5,14 @@ from models import UserBlogPost
 from user_site.user_blog_post.forms import User_BlogPostForm
 from flask import render_template, request, Blueprint
 from flask_login import current_user, login_required
+from reauthentication import reauth_required
 
 user_blog_post_bp = Blueprint('user_blog_post_bp', __name__, template_folder = '../templates')
 
 
 @user_blog_post_bp.route('/user_create_post', methods=['GET','POST'])
 @login_required
+@reauth_required('admin')
 def user_create_post():
     form = User_BlogPostForm()
 
@@ -31,6 +33,7 @@ def user_create_post():
 # instead of a string so we can look it up later.
 @user_blog_post_bp.route('/user_read_post/<int:blog_post_id>')
 @login_required
+@reauth_required('admin')
 def user_read_post(blog_post_id):
     # grab the requested blog post by id number or return 404
     blog_post = UserBlogPost.query.get_or_404(blog_post_id)
@@ -39,6 +42,7 @@ def user_read_post(blog_post_id):
 
 @user_blog_post_bp.route("/user_update_post/<int:blog_post_id>", methods=['GET', 'POST'])
 @login_required
+@reauth_required('admin')
 def user_update_post(blog_post_id):
     blog_post = UserBlogPost.query.get_or_404(blog_post_id)
     if blog_post.user_author != current_user:
@@ -62,6 +66,7 @@ def user_update_post(blog_post_id):
 
 @user_blog_post_bp.route("/user_delete_post/<int:blog_post_id>", methods=['POST'])
 @login_required
+@reauth_required('admin')
 def user_delete_post(blog_post_id):
     blog_post = UserBlogPost.query.get_or_404(blog_post_id)
     if blog_post.user_author != current_user:
@@ -74,6 +79,7 @@ def user_delete_post(blog_post_id):
 
 @user_blog_post_bp.route('/user_post_list')
 @login_required
+@reauth_required('admin')
 def user_post_list():
     '''
     This is the home page view. Notice how it uses pagination to show a limited
