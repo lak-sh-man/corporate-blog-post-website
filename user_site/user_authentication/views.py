@@ -15,10 +15,14 @@ def user_register():
     form = User_RegistrationForm()
 
     if form.validate_on_submit():
+        admin_id = request.form.get('admin_consent')
+        if admin_id == None:
+            return render_template('user_register.html', form=form)
+
         user = User(email=form.email.data,
                     username=form.username.data,
                     password=form.password.data,
-                    admin_id = form.admin_consent.data)
+                    admin_id = int(admin_id))
 
         db.session.add(user)
         db.session.commit()
