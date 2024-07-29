@@ -15,9 +15,6 @@
       <li class='nav-link'>
         <a href="{{url_for('home')}}">Home</a>
       </li>
-      <li class='nav-link'>
-        <a href="{{url_for('about')}}">About</a>
-      </li>
       {% if current_user.is_authenticated %}
             {% if current_user.id == 0 %}
                   <li class='nav-link'>
