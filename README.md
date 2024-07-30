@@ -1,1 +1,1 @@
-# Corp Blogs - A Blog Post website tailored for both Admin and User credentials
+# Corp Blogs - A blog post web app
