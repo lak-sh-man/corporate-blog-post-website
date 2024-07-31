@@ -94,7 +94,7 @@ def admin_post_list():
 @login_required
 @reauth_required('user')
 def admin_user_list():
-    clients = User.query.all()
+    clients = User.query.filter_by(admin_id=current_user.id).all()
     return render_template('admin_user_list.html', clients=clients)
 
 
