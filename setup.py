@@ -8,7 +8,7 @@ from flask import Flask
 app = Flask(__name__, template_folder='templates')
 #########################################################################################
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secure-default-key')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', "postgres_url_here")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', "postgresql://default:anh2IPVY0XDv@ep-billowing-violet-a4uz9d3l-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #########################################################################################
 db = SQLAlchemy(app)
