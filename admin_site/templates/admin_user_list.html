@@ -2,11 +2,22 @@
 {% block content %}
 <div class="jumbotron">
   <h1>Here is a list of all available clients.</h1>
-  <ul>
-    {% for cli in clients  %}
-    <li>{{cli}}</li>
-    {% endfor %}
-  </ul>
 </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Client Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for client in clients %}
+    <tr>
+      <td>{{ client.id }}</td>
+      <td>{{ client.username }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
