@@ -27,16 +27,11 @@ Corp Blogs is a website that allows companies to post blogs about their activiti
     ```
 
 2. Open your web browser and go to `http://127.0.0.1:5000/`
-<br>
 
-## Visit The Deployed Website
+## More Info
 
 Check out the live version of the app [https://corp-blogs.vercel.app/](https://corp-blogs.vercel.app/)
-<br>
-
-## Contact
-
-If you have any questions or suggestions, feel free to reach out at [lakshman1122000@gmail.com](mailto:lakshman1122000@gmail.com)
+If you have any questions or suggestions, feel free to reach me out at [lakshman1122000@gmail.com](mailto:lakshman1122000@gmail.com)
 
 
 
