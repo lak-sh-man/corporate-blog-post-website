@@ -30,7 +30,7 @@ Corp Blogs is a website that allows companies to post blogs about their activiti
 
 ## More Info
 
-- Check out the live version of the app [https://corp-blogs.vercel.app/](https://corp-blogs.vercel.app/)
+- Check out the live version of the app at [https://corp-blogs.vercel.app/](https://corp-blogs.vercel.app/)
 - If you have any questions or suggestions, feel free to reach me out at [lakshman1122000@gmail.com](mailto:lakshman1122000@gmail.com)
 
 
