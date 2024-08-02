@@ -94,7 +94,9 @@ def admin_post_list():
 @login_required
 @reauth_required('user')
 def admin_user_list():
-    clients = User.query.filter_by(admin_id=current_user.id).all()
+    page = request.args.get('page', 1, type=int)
+    # In this case, you don’t need .all() because the .paginate() method already handles fetching the results.
+    clients = User.query.filter_by(admin_id=current_user.id).paginate(page=page, per_page=10)
     return render_template('admin_user_list.html', clients=clients)
 
 
