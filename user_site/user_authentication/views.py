@@ -79,10 +79,10 @@ def user_account():
     form = User_UpdateForm()
 
     if form.validate_on_submit():
-        # if form.picture.data:
-        username = current_user.username
-        pic = add_profile_pic(form.picture.data,username)
-        details_update.profile_image = pic
+        if form.picture.data:
+            username = current_user.username
+            pic = add_profile_pic(form.picture.data,username)
+            details_update.profile_image = pic
 
         details_update.username = form.username.data
         details_update.email = form.email.data
