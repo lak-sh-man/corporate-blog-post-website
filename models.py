@@ -23,10 +23,10 @@ class User(db.Model, UserMixin):
     __tablename__ = 'user_table'
 
     id = db.Column(db.Integer, primary_key = True)
-    profile_image = db.Column(db.String(20), nullable=False, default='user_default_profile.jpg')
+    profile_image = db.Column(db.String(255), nullable=False, default='user_default_profile.jpg')
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(255))
     posts = db.relationship('UserBlogPost', backref='user_author', lazy=True)
     admin_id = db.Column(db.Integer,db.ForeignKey('admin_table.id'), nullable=False)
 
@@ -70,10 +70,10 @@ class Admin(db.Model, UserMixin):
     __tablename__ = 'admin_table'
 
     id = db.Column(db.Integer, primary_key = True)
-    profile_image = db.Column(db.String(20), nullable=False, default='admin_default_profile.jpg')
+    profile_image = db.Column(db.String(255), nullable=False, default='admin_default_profile.jpg')
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(255))
     posts = db.relationship('AdminBlogPost', backref='admin_author', lazy=True)
     clients = db.relationship('User',backref='admin_clients',lazy='dynamic')
 

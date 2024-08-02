@@ -75,17 +75,17 @@ def user_logout():
 @login_required
 @reauth_required('admin')
 def user_account():
-
+    details_update = User.query.get(current_user.id)
     form = User_UpdateForm()
 
     if form.validate_on_submit():
         if form.picture.data:
             username = current_user.username
             pic = add_profile_pic(form.picture.data,username)
-            current_user.profile_image = pic
+            details_update.profile_image = pic
 
-        current_user.username = form.username.data
-        current_user.email = form.email.data
+        details_update.username = form.username.data
+        details_update.email = form.email.data
         db.session.commit()
         flash('User Account Updated')
         return redirect(url_for('user_authentication_bp.user_account'))
