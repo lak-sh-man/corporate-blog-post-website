@@ -17,6 +17,11 @@ def add_profile_pic(pic_upload,username):
 
     # Open the picture and save it
     pic = Image.open(pic_upload)
+
+    # Convert image mode to RGB if it has an alpha channel (transparency)
+    if pic.mode in ("RGBA", "P"):
+        pic = pic.convert("RGB")
+
     pic.thumbnail(output_size)
     pic.save(filepath)
 
