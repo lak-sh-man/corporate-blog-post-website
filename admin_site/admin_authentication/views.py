@@ -10,20 +10,20 @@ from reauthentication import reauth_required
 
 admin_authentication_bp = Blueprint('admin_authentication_bp', __name__, template_folder = '../templates')
 
-@admin_authentication_bp.route('/admin_register', methods=['GET', 'POST'])
-def admin_register():
-    form = Admin_RegistrationForm()
+# @admin_authentication_bp.route('/admin_register', methods=['GET', 'POST'])
+# def admin_register():
+#     form = Admin_RegistrationForm()
 
-    if form.validate_on_submit():
-        user = Admin(email=form.email.data,
-                    username=form.username.data,
-                    password=form.password.data)
+#     if form.validate_on_submit():
+#         user = Admin(email=form.email.data,
+#                     username=form.username.data,
+#                     password=form.password.data)
 
-        db.session.add(user)
-        db.session.commit()
-        flash('Thanks for registering! Now you can login!')
-        return redirect(url_for('admin_authentication_bp.admin_login'))
-    return render_template('admin_register.html', form=form)
+#         db.session.add(user)
+#         db.session.commit()
+#         flash('Thanks for registering! Now you can login!')
+#         return redirect(url_for('admin_authentication_bp.admin_login'))
+#     return render_template('admin_register.html', form=form)
 
 @admin_authentication_bp.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
