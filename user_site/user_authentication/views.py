@@ -19,7 +19,8 @@ def user_register():
         if admin_id == None:
             return render_template('user_register.html', form=form)
 
-        user = User(email=form.email.data,
+        user = User(id=User.get_next_id(),
+                    email=form.email.data,
                     username=form.username.data,
                     password=form.password.data,
                     admin_id = int(admin_id))

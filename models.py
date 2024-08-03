@@ -30,6 +30,11 @@ class User(db.Model, UserMixin):
     posts = db.relationship('UserBlogPost', backref='user_author', lazy=True)
     admin_id = db.Column(db.Integer,db.ForeignKey('admin_table.id'), nullable=False)
 
+    @classmethod
+    def get_next_id(cls):
+        max_id = db.session.query(db.func.max(cls.id)).scalar()
+        return max_id + 1 if max_id else 1
+
     def __init__(self, email, username, password, admin_id):
         self.email = email
         self.username = username
