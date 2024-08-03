@@ -32,10 +32,13 @@ class User(db.Model, UserMixin):
 
     @classmethod
     def get_next_id(cls):
+        # this "db.session" is SQLAlchemy session that delas with db
+        # user session is different, it looks like just "session['username'] = username"
         max_id = db.session.query(db.func.max(cls.id)).scalar()
         return max_id + 1 if max_id else 1
 
-    def __init__(self, email, username, password, admin_id):
+    def __init__(self, id, email, username, password, admin_id):
+        self.id = id
         self.email = email
         self.username = username
         self.password_hash = generate_password_hash(password)
