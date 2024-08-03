@@ -37,7 +37,7 @@ class Admin_RegistrationForm(FlaskForm):
 class Admin_UpdateForm(FlaskForm):
     email = StringField('Admin Email', validators=[DataRequired(),Email()])
     username = StringField('Admin Name', validators=[DataRequired()])
-    picture = FileField('Update Admin Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Admin Profile Picture (disabled currently)', render_kw={'disabled': True}, validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Admin Update')
 
     def validate_email(self, field):
