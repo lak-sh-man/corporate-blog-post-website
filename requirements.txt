@@ -51,3 +51,6 @@ packaging==24.1
 pyparsing==3.1.2
 typing_extensions==4.12.2
 zipp==3.19.2
+
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1

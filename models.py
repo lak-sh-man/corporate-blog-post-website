@@ -23,14 +23,23 @@ class User(db.Model, UserMixin):
     __tablename__ = 'user_table'
 
     id = db.Column(db.Integer, primary_key = True)
-    profile_image = db.Column(db.String(255), nullable=False, default='user_default_profile.jpg')
+    date = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    profile_image = db.Column(db.String(255), nullable=True, default='user_default_profile.jpg')
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(255))
     posts = db.relationship('UserBlogPost', backref='user_author', lazy=True)
     admin_id = db.Column(db.Integer,db.ForeignKey('admin_table.id'), nullable=False)
 
-    def __init__(self, email, username, password, admin_id):
+    @classmethod
+    def get_next_id(cls):
+        # this "db.session" is SQLAlchemy session that delas with db
+        # user session is different, it looks like just "session['username'] = username"
+        max_id = db.session.query(db.func.max(cls.id)).scalar()
+        return max_id + 1 if max_id else 1
+
+    def __init__(self, id, email, username, password, admin_id):
+        self.id = id
         self.email = email
         self.username = username
         self.password_hash = generate_password_hash(password)
@@ -70,6 +79,7 @@ class Admin(db.Model, UserMixin):
     __tablename__ = 'admin_table'
 
     id = db.Column(db.Integer, primary_key = True)
+    date = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     profile_image = db.Column(db.String(255), nullable=False, default='admin_default_profile.jpg')
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
